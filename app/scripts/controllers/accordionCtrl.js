@@ -86,8 +86,8 @@ angular.module('parkLocator').controller('accordionCtrl', [ '$scope', 'mapServic
     // Select a park section
     $scope.centerToPark = function (park) {
     	$scope.map.zoom = 16;
-      $scope.map.location.coords.latitude = park.latitude;
-      $scope.map.location.coords.longitude = park.longitude;
+      $scope.map.center.latitude = park.latitude;
+      $scope.map.center.longitude = park.longitude;
       $timeout(function(){
         park.markerClick(null, 'click', park);
        }, 100); 
