@@ -12,11 +12,11 @@ angular.module('parkLocator').factory('mapService', ['Flash', 'uiGmapGoogleMapAp
   });
 
   // Temporary coordinates while Geoloc gets us the user's coords
-  var location = {
-  	coords: {
-	    latitude: 35.79741992502266, 
-	    longitude: -78.64118938203126
-  	}
+  var center = {
+    latitude: 35.79741992502266, 
+    longitude: -78.64118938203126,
+    zoom: 14,
+    autoDiscover: true
   };
 
   var map = {
@@ -27,7 +27,7 @@ angular.module('parkLocator').factory('mapService', ['Flash', 'uiGmapGoogleMapAp
     // set to true to trigger a map refresh when necessary
     refresh: false,
     pan: false,
-    location: location,
+    center: center,
     control: {},
     bounds: {
       northeast: {
@@ -77,7 +77,7 @@ angular.module('parkLocator').factory('mapService', ['Flash', 'uiGmapGoogleMapAp
   // Marker for current location (Geolocation or default)
   map.myLocationMarker = {
     id: 0,
-    coords: { latitude: location.coords.latitude, longitude: location.coords.longitude },
+    coords: { latitude: center.latitude, longitude: center.longitude },
     options: {
       draggable: false,
       clickable: false,
@@ -119,8 +119,8 @@ angular.module('parkLocator').factory('mapService', ['Flash', 'uiGmapGoogleMapAp
 
   var updateUserCoords = function (lat, lon) {
     // Update the location obj with the accurate user coords
-    map.location.coords.latitude = lat;
-    map.location.coords.longitude = lon;
+    map.center.latitude = lat;
+    map.center.longitude = lon;
     map.myLocationMarker.coords.latitude = lat;
     map.myLocationMarker.coords.longitude = lon;
     map.zoom = 14;
@@ -133,8 +133,8 @@ angular.module('parkLocator').factory('mapService', ['Flash', 'uiGmapGoogleMapAp
 
   var moveToPos = function (lat, lon) {
     // if (!_isInRaleigh(lat,lon)) { return updateUserCoords(lat,lon); }
-    map.location.coords.latitude = lat;
-    map.location.coords.longitude = lon;
+    map.center.latitude = lat;
+    map.center.longitude = lon;
     map.zoom = 16;
   };
 
