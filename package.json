@@ -50,7 +50,5 @@
   },
   "dependencies": {
     "bower": "1.7.1",
-    "ejs": "2.3.4",
-    "express": "4.13.3"
   }
 }
